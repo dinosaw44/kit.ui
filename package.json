@@ -1,0 +1,57 @@
+{
+  "name": "@dinosaw44/ui",
+  "private": true,
+  "type": "module",
+  "config": {
+    "angular": 7001,
+    "react": 7002,
+    "svelte": 7003,
+    "vue": 7004
+  },
+  "scripts": {
+    "storybook:dev": "storybook dev --port ${!PORT}",
+    "storybook:ng:dev": "ng run angular-latest:storybook --port ${!PORT}",
+    "storybook:build": "storybook build --output-dir build/${FW}",
+    "storybook:ng:build": "ng run angular-latest:build-storybook --output-dir build/${FW}",
+    "storybook:config": "export FW=${LE##*:}; export PORT=npm_package_config_${FW}; npm run ${RUN:-storybook}:${MODE} -- --config-dir .storybook.${FW}",
+    "storybook:config:ng": "RUN=storybook:ng npm run storybook:config --",
+    "sb:angular": "LE=${npm_lifecycle_event} npm run storybook:config:ng --",
+    "sb:react": "LE=${npm_lifecycle_event} npm run storybook:config --",
+    "sb:svelte": "LE=${npm_lifecycle_event} npm run storybook:config --",
+    "sb:vue": "LE=${npm_lifecycle_event} npm run storybook:config --",
+    "dev": "export MODE=dev; concurrently -P \"storybook dev --config-dir .storybook_comp --port 7357 {@}\" \"npm:sb:* -- {@}\" -- --no-open",
+    "build": "export MODE=build; storybook build --config-dir .storybook_comp --output-dir build && concurrently npm:sb:*"
+  },
+  "devDependencies": {
+    "@angular/cli": "^18.1.2",
+    "@chromatic-com/storybook": "^1.6.1",
+    "@storybook/addon-essentials": "^8.2.6",
+    "@storybook/addon-interactions": "^8.2.6",
+    "@storybook/addon-links": "^8.2.6",
+    "@storybook/addon-onboarding": "^8.2.6",
+    "@storybook/addon-svelte-csf": "^4.1.4",
+    "@storybook/angular": "^8.2.6",
+    "@storybook/blocks": "^8.2.6",
+    "@storybook/react": "^8.2.6",
+    "@storybook/react-vite": "^8.2.6",
+    "@storybook/svelte": "^8.2.6",
+    "@storybook/svelte-vite": "^8.2.6",
+    "@storybook/test": "^8.2.6",
+    "@storybook/vue3": "^8.2.6",
+    "@storybook/vue3-vite": "^8.2.6",
+    "@sveltejs/vite-plugin-svelte": "^3.1.1",
+    "@tsconfig/svelte": "^5.0.4",
+    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-vue": "^5.1.1",
+    "concurrently": "^8.2.2",
+    "storybook": "^8.2.6",
+    "svelte": "^4.2.18",
+    "svelte-check": "^3.8.4",
+    "tslib": "^2.6.3",
+    "typescript": "^5.2.2",
+    "vite": "^5.3.4"
+  },
+  "dependencies": {
+    "@angular/animations": "^18.1.2"
+  }
+}
