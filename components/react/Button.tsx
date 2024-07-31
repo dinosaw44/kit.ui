@@ -7,6 +7,10 @@ export interface ButtonProps {
    */
   primary?: boolean;
   /**
+   * Set input type
+   */
+  submit?: boolean;
+  /**
    * What background color to use
    */
   backgroundColor?: string;
@@ -29,6 +33,7 @@ export interface ButtonProps {
  */
 export const Button = ({
   primary = false,
+  submit = false,
   size = 'medium',
   backgroundColor,
   label,
@@ -37,7 +42,7 @@ export const Button = ({
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
   return (
     <button
-      type="button"
+      type={submit ? "submit" : "button"}
       className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
       style={{ backgroundColor }}
       {...props}
